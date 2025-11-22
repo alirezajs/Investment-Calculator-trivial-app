@@ -1,6 +1,15 @@
 node_modules
 dist
 build
+.vite
+/.cache
+*.log
+.DS_Store
+public/
+coverage/
+node_modules
+dist
+build
 .vscode
 *.log
 package-lock.json

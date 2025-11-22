@@ -1,22 +1,6 @@
-import { useState } from 'react';
+import react from 'react';
 
-export default function UserInput() {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setUserInput((prevInput) => ({
-      ...prevInput, // need to spread the previous state as we are only updating one field
-      [name]: Number(value),
-    }));
-  }
-
+export default function UserInput({ userInput, handleChange }) {
   return (
     <section id="user-input">
       <div className="input-group">
