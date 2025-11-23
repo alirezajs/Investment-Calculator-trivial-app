@@ -1,7 +1,7 @@
 import Header from './components/Header.jsx';
 import Results from './components/Results.jsx';
 import UserInput from './components/UserInput.jsx';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
   const [userInput, setUserInput] = useState({
@@ -11,12 +11,17 @@ function App() {
     duration: 10,
   });
 
+  // Allow typing '-' or clearing the input without immediately coercing to 0
+  const inputIsValid = Number(userInput.duration) >= 0;
+
   function handleChange(event) {
     const { name, value } = event.target;
+    // Allow empty string or lone '-' while typing. Otherwise store a Number.
+    const nextValue = value === '' || value === '-' ? value : Number(value);
 
     setUserInput((prevInput) => ({
       ...prevInput, // need to spread the previous state as we are only updating one field
-      [name]: Number(value),
+      [name]: nextValue,
     }));
   }
 
@@ -24,7 +29,12 @@ function App() {
     <>
       <Header />
       <UserInput userInput={userInput} handleChange={handleChange} />
-      <Results userInput={userInput} />
+      {!inputIsValid && (
+        <p className="center">
+          Please enter a valid initial investment amount.
+        </p>
+      )}
+      {inputIsValid && <Results userInput={userInput} />}
     </>
   );
 }

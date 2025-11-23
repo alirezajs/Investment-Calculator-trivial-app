@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../assets/investment-calculator-logo.png';
 
 export default function Header() {

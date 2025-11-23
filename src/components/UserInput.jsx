@@ -1,5 +1,5 @@
-import react from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 export default function UserInput({ userInput, handleChange }) {
   return (
     <section id="user-input">
@@ -9,7 +9,7 @@ export default function UserInput({ userInput, handleChange }) {
           <input
             id="initial-investment"
             type="number"
-            name="initial-investment"
+            name="initialInvestment"
             required
             value={userInput.initialInvestment}
             onChange={handleChange}
@@ -20,7 +20,7 @@ export default function UserInput({ userInput, handleChange }) {
           <input
             id="annual-investment"
             type="number"
-            name="annual-investment"
+            name="annualInvestment"
             required
             value={userInput.annualInvestment}
             onChange={handleChange}
@@ -33,7 +33,7 @@ export default function UserInput({ userInput, handleChange }) {
           <input
             id="expected-return"
             type="number"
-            name="expected-return"
+            name="expectedReturn"
             required
             value={userInput.expectedReturn}
             onChange={handleChange}
@@ -54,3 +54,17 @@ export default function UserInput({ userInput, handleChange }) {
     </section>
   );
 }
+
+UserInput.propTypes = {
+  userInput: PropTypes.shape({
+    initialInvestment: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
+    annualInvestment: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
+    expectedReturn: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
+    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
 export default function Results({ userInput }) {
@@ -42,3 +43,14 @@ export default function Results({ userInput }) {
     </table>
   );
 }
+
+Results.propTypes = {
+  userInput: PropTypes.shape({
+    initialInvestment: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    annualInvestment: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }),
+};
